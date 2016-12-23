@@ -11,7 +11,7 @@ Botan::X509_Certificate CA::create_cert(std::string request_file){
     std::chrono::system_clock::time_point end = std::chrono::system_clock::now();
 
     Botan::X509_Time start_time(now);
-    Botan::X509_Time end_time(end);//need to be editted
+    Botan::X509_Time end_time = start_time;//need to be editted
 
     Botan::X509_Certificate new_cert = ca.sign_request(request, rng, start_time, end_time);
 
