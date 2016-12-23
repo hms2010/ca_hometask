@@ -19,11 +19,12 @@ class CA{
 private:
     Botan::Certificate_Store_In_Memory certs_store;
     Botan::AutoSeeded_RNG rng;
+    bool is_req_valid(Botan::PKCS10_Request request);
 public:
     Botan::X509_CA ca;
     CA(void) = delete;
     CA(CA_cert& ca_cert);
-    Botan::X509_Certificate create_cert(std::string request_file);
+    std::unique_ptr<Botan::X509_Certificate> create_cert(std::string request_file);
 
 
 };

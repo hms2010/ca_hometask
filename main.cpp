@@ -3,15 +3,15 @@
 #define REVOKE_CERT "revoke_cert"
 #define EXIT "exit"
 
-void help(void);
-
 #include <iostream>
+
 #include <fstream>
 #include <string>
-
 #include <botan/botan.h>
 
 #include "CA.h"
+
+void help(void);
 
 
 int main(){
@@ -22,13 +22,13 @@ int main(){
         fCert.close();
         fKey.close();
 
-//        CA_cert ca_cert("ca/cert.pem", "ca/key.pem");
-//        CA ca(ca_cert);
+        CA_cert ca_cert("ca/cert.pem", "ca/key.pem");
+        CA ca(ca_cert);
 
         std::string command;
         do{
             std::cout << std::endl
-                      << "$ Enter command. If you need help, enter 'help'" << std::endl;
+                      << "$ Enter command. If you need help, enter 'help\n>>>'" << std::endl;
             std::cin >> command;
 
             if (command == HELP){
@@ -39,13 +39,16 @@ int main(){
                 std::cout << "$ Creating new certificates..."
                           << std::endl;
                 std::string pkcs10_req;
-//                ca.create_cert(pkcs10_req);
+                if (ca.create_cert(pkcs10_req) == nullptr){
+                    //do smth
+                }
                 std::cout << "$ Success. Certificates was created and added to a store"
                           << std::endl;
             }
             else if(command == REVOKE_CERT){
                 //there is no processing function for it now
                 std::cout << "$ Revoking the certificate..." << std::endl;
+                std::cout << "$ Isn't available in this version" << std::endl;
             }
 
 
@@ -55,11 +58,11 @@ int main(){
     }
     catch(std::ios_base::failure& e){
         std::cerr << e.what() << '\n';
-        return  1;
+        return 1;
     }
     catch(...){
         std::cout << "$ Uknown error.\n$ Exit program" << std::endl;
-        return  333;
+        return 2;
     }
 
 
