@@ -16,6 +16,7 @@ void help(void);
 
 int main(){
     try{
+        help();
         std::ifstream fCert("ca/cert.pem");
         std::ifstream fKey("ca/key.pem");
         fCert.close();
@@ -26,7 +27,7 @@ int main(){
 
         std::string command;
         do{
-            std::cout << "##Enter command. If you need help, enter 'help'" << std::endl;
+            std::cout << "##- Enter command. If you need help, enter 'help'" << std::endl;
             std::cin >> command;
 
             if (command == HELP){
@@ -49,6 +50,10 @@ int main(){
     catch(std::ios_base::failure& e){
         std::cerr << e.what() << '\n';
         return  1;
+    }
+    catch(...){
+        std::cout << "##- Uknown error. Exit program" << std::endl;
+        return  333;
     }
 
 
