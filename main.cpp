@@ -39,7 +39,7 @@ int main(){
                 ca.create_cert(pkcs10_req);
             }
             else if(command == REVOKE_CERT){
-
+                //there is no processing function for it now
             }
 
 
