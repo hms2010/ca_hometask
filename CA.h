@@ -11,11 +11,14 @@
 
 class CA_cert;
 
+
 class CA{
 public:
     Botan::X509_CA ca;
     CA(void) = delete;
     CA(CA_cert& ca_cert);
+    Botan::X509_Certificate create_cert(std::string request_file);
+
 
 };
 

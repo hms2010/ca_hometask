@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 
 #include <botan/botan.h>
 
@@ -6,9 +7,19 @@
 
 
 int main(){
-    CA_cert ca_cert("ca/cert.pem", "ca/key.pem");
-    CA ca(ca_cert);
+    try{
+        std::ifstream fCert("ca/cert.pem");
+        std::ifstream fKey("ca/key.pem");
+        fCert.close();
+        fKey.close();
 
-    std::cout << "Hello, World!" << std::endl;
+        CA_cert ca_cert("ca/cert.pem", "ca/key.pem");
+        CA ca(ca_cert);
+    }
+    catch(std::ios_base::failure& e){
+        std::cerr << e.what() << '\n';
+        return  1;
+    }
+
     return 0;
 }
