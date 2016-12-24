@@ -10,13 +10,13 @@
 3. $make
 
 ## To use
-1. Create dir your_path/ca_hometask/ca
-2. Move CA RSA private key ("key.pem") and CA certificate to this directory.
+1. $./create_path.sh
+2. Move CA RSA private key ("key.pem") and CA certificate to path/ca_hometask/ca directory.
 
  You can generate it by yourself
  
  Example:
  $openssl genrsa -'enc_algo' -passout 'your_pass' -out key.pem 1024
  
-3. Create dir your_path/ca_hometask/certs
+2. Create dir your_path/ca_hometask/certs
 
