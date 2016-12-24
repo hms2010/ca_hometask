@@ -17,6 +17,7 @@ void help(void);
 int main(){
     try{
         help();
+        // хардкод подходит для прототипа
         std::ifstream fCert("ca/cert.pem");
         std::ifstream fKey("ca/key.pem");
         fCert.close();
@@ -49,11 +50,15 @@ int main(){
                 }
                 std::cout << "$ Success. Certificates was created and added to a store"
                           << std::endl;
+                // как пользователь получает этот сертификат?
             }
             else if(command == REVOKE_CERT){
                 //there is no processing function for it now
                 std::cout << "$ Revoking the certificate..." << std::endl;
                 std::cout << "$ Isn't available in this version" << std::endl;
+            } else {
+                std::cout << "$ Sorry, your command is incorrect" << std::endl;
+                help();
             }
 
 
@@ -61,7 +66,7 @@ int main(){
         } while (command != EXIT);
         return 0;
     }
-    catch(std::ios_base::failure& e){
+    catch(std::ios_base::failure& e){ // const, почему не std::exception?
         std::cerr << e.what() << '\n';
         return 1;
     }
