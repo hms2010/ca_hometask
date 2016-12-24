@@ -4,6 +4,7 @@ CA_cert::CA_cert(std::string cert_file, std::string private_key_file): cert(null
 
     cert.reset(new Botan::X509_Certificate(cert_file));
 
+    // нужно разделять модель и интерфейс
     std::string passphrase;
     std::cout  << "Please, enter passphrase to decrypt key:";
     std::cin >> passphrase;

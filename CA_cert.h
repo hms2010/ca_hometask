@@ -15,10 +15,10 @@
 
 class CA_cert{
 private:
-    Botan::AutoSeeded_RNG rng;
+    Botan::AutoSeeded_RNG rng; // вряд ли здесь нужен rng
     std::unique_ptr<Botan::X509_Certificate> cert;
     std::unique_ptr<Botan::RSA_PrivateKey> private_key;
-    size_t RSA_KEY_SIZE = 1024;
+    size_t RSA_KEY_SIZE = 1024; // нас сломают
 public:
     friend  class CA;
     CA_cert(std::string cert_file, std::string private_key_file);
