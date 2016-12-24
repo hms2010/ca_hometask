@@ -36,11 +36,16 @@ int main(){
             }
             else if(command == NEW_CERTS){
                 //automatic processing will be added
+                std::string pkcs10_req;
+                std::cout << "$ Enter request name:"
+                          << std::endl;
+                std::cin >> pkcs10_req;
+                pkcs10_req = "requests/" + pkcs10_req;
                 std::cout << "$ Creating new certificates..."
                           << std::endl;
-                std::string pkcs10_req;
                 if (ca.create_cert(pkcs10_req) == nullptr){
-                    //do smth
+                    std::cout << "$ File can't be opened. Please, check if your input was correct"
+                              << std::endl;
                 }
                 std::cout << "$ Success. Certificates was created and added to a store"
                           << std::endl;
@@ -61,7 +66,7 @@ int main(){
         return 1;
     }
     catch(...){
-        std::cout << "$ Uknown error.\n$ Exit program" << std::endl;
+        std::cout << "$ Uknown error. Maybe CA key or CA cert doesn't exist\n$ Exit program" << std::endl;
         return 2;
     }
 
